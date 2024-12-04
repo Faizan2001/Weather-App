@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const unitToggle = document.getElementById("unitToggle");
   const unitLabel = document.getElementById("unitLabel");
 
-
   button.addEventListener("click", () => {
     getWeather();
   });
@@ -17,8 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Ze Enter key for quality of life improvements
+  input.addEventListener("keypress", (event) => {
+    if (event.key === "Enter" && input.value.trim()) {
+      getWeather();
+    }
+  });
+
   async function getWeather() {
- 
     const unitGroup = unitToggle.checked ? "metric" : "us";
     try {
       const response = await fetch(
